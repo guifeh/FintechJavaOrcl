@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>App.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+App.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">br</span><span class="s2">.</span><span class="s1">com</span><span class="s2">.</span><span class="s1">fiap</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">br</span><span class="s2">.</span><span class="s1">com</span><span class="s2">.</span><span class="s1">fiap</span><span class="s2">.</span><span class="s1">dao</span><span class="s2">.</span><span class="s1">ReceitaDAO</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">br</span><span class="s2">.</span><span class="s1">com</span><span class="s2">.</span><span class="s1">fiap</span><span class="s2">.</span><span class="s1">dao</span><span class="s2">.</span><span class="s1">DespesaDAO</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">br</span><span class="s2">.</span><span class="s1">com</span><span class="s2">.</span><span class="s1">fiap</span><span class="s2">.</span><span class="s1">dao</span><span class="s2">.</span><span class="s1">InvestimentoDAO</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">br</span><span class="s2">.</span><span class="s1">com</span><span class="s2">.</span><span class="s1">fiap</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Receita</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">br</span><span class="s2">.</span><span class="s1">com</span><span class="s2">.</span><span class="s1">fiap</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Despesa</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">br</span><span class="s2">.</span><span class="s1">com</span><span class="s2">.</span><span class="s1">fiap</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Investimento</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">br</span><span class="s2">.</span><span class="s1">com</span><span class="s2">.</span><span class="s1">fiap</span><span class="s2">.</span><span class="s1">factory</span><span class="s2">.</span><span class="s1">ConnectionFactory</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">sql</span><span class="s2">.</span><span class="s1">SQLException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">sql</span><span class="s2">.</span><span class="s1">Connection</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">sql</span><span class="s2">.</span><span class="s1">DriverManager</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Date</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">App </span><span class="s2">{</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s1">Connection conexao </span><span class="s2">= </span><span class="s1">ConnectionFactory</span><span class="s2">.</span><span class="s1">getConnection</span><span class="s2">();</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Conexão realizada!&quot;</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">SQLException e</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
+        <span class="s2">}</span>
+
+        <span class="s1">ReceitaDAO receitaDAO </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ReceitaDAO</span><span class="s2">();</span>
+        <span class="s1">DespesaDAO despesaDAO </span><span class="s2">= </span><span class="s0">new </span><span class="s1">DespesaDAO</span><span class="s2">();</span>
+        <span class="s1">InvestimentoDAO investimentoDAO </span><span class="s2">= </span><span class="s0">new </span><span class="s1">InvestimentoDAO</span><span class="s2">();</span>
+
+        <span class="s4">// Inserir registros de receitas</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s5">1</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt;= </span><span class="s5">5</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">Receita receita </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Receita</span><span class="s2">();</span>
+            <span class="s1">receita</span><span class="s2">.</span><span class="s1">setDescricao</span><span class="s2">(</span><span class="s3">&quot;Receita &quot; </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s1">receita</span><span class="s2">.</span><span class="s1">setValor</span><span class="s2">(</span><span class="s5">1000.0 </span><span class="s2">* </span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s1">receita</span><span class="s2">.</span><span class="s1">setDataRecebimento</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Date</span><span class="s2">());</span>
+            <span class="s1">receitaDAO</span><span class="s2">.</span><span class="s1">insert</span><span class="s2">(</span><span class="s1">receita</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s4">// Consultar todas as receitas</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Receita</span><span class="s2">&gt; </span><span class="s1">receitas </span><span class="s2">= </span><span class="s1">receitaDAO</span><span class="s2">.</span><span class="s1">getAll</span><span class="s2">();</span>
+        <span class="s1">receitas</span><span class="s2">.</span><span class="s1">forEach</span><span class="s2">(</span><span class="s1">r -&gt; System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Receita: &quot; </span><span class="s2">+ </span><span class="s1">r</span><span class="s2">.</span><span class="s1">getDescricao</span><span class="s2">()));</span>
+
+        <span class="s4">// Fazer o mesmo para Despesas e Investimentos</span>
+        <span class="s4">// Inserir despesas</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s5">1</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt;= </span><span class="s5">5</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">Despesa despesa </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Despesa</span><span class="s2">();</span>
+            <span class="s1">despesa</span><span class="s2">.</span><span class="s1">setDescricao</span><span class="s2">(</span><span class="s3">&quot;Despesa &quot; </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s1">despesa</span><span class="s2">.</span><span class="s1">setValor</span><span class="s2">(</span><span class="s5">500.0 </span><span class="s2">* </span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s1">despesa</span><span class="s2">.</span><span class="s1">setDataPagamento</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Date</span><span class="s2">());</span>
+            <span class="s1">despesaDAO</span><span class="s2">.</span><span class="s1">insert</span><span class="s2">(</span><span class="s1">despesa</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s4">// Consultar todas as despesas</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Despesa</span><span class="s2">&gt; </span><span class="s1">despesas </span><span class="s2">= </span><span class="s1">despesaDAO</span><span class="s2">.</span><span class="s1">getAll</span><span class="s2">();</span>
+        <span class="s1">despesas</span><span class="s2">.</span><span class="s1">forEach</span><span class="s2">(</span><span class="s1">d -&gt; System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Despesa: &quot; </span><span class="s2">+ </span><span class="s1">d</span><span class="s2">.</span><span class="s1">getDescricao</span><span class="s2">()));</span>
+
+        <span class="s4">// Inserir investimentos</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s5">1</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt;= </span><span class="s5">5</span><span class="s2">; </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">Investimento investimento </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Investimento</span><span class="s2">();</span>
+            <span class="s1">investimento</span><span class="s2">.</span><span class="s1">setDescricao</span><span class="s2">(</span><span class="s3">&quot;Investimento &quot; </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s1">investimento</span><span class="s2">.</span><span class="s1">setValor</span><span class="s2">(</span><span class="s5">2000.0 </span><span class="s2">* </span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s1">investimento</span><span class="s2">.</span><span class="s1">setDataAplicacao</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Date</span><span class="s2">());</span>
+            <span class="s1">investimentoDAO</span><span class="s2">.</span><span class="s1">insert</span><span class="s2">(</span><span class="s1">investimento</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s4">// Consultar todos os investimentos</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Investimento</span><span class="s2">&gt; </span><span class="s1">investimentos </span><span class="s2">= </span><span class="s1">investimentoDAO</span><span class="s2">.</span><span class="s1">getAll</span><span class="s2">();</span>
+        <span class="s1">investimentos</span><span class="s2">.</span><span class="s1">forEach</span><span class="s2">(</span><span class="s1">i -&gt; System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Investimento: &quot; </span><span class="s2">+ </span><span class="s1">i</span><span class="s2">.</span><span class="s1">getDescricao</span><span class="s2">()));</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
